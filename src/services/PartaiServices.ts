@@ -9,6 +9,7 @@ export default new (class PartaiServices {
     try {
       const paslon = await PaslonServices.findById(reqBody.paslon);
       const partai = AppDataSource.getRepository(Partai).create({
+        name: reqBody.name,
         chairman: reqBody.chairman,
         vm: reqBody.vm,
         address: reqBody.address,

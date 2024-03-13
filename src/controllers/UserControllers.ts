@@ -48,7 +48,7 @@ export default new (class UserControllers {
     } catch (error) {
       return res
         .status(500)
-        .json({ message: "Failed to get user", error: error.message });
+        .json({ message: "Failed update get user", error: error.message });
     }
   }
 

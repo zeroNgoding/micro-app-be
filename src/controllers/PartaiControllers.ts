@@ -2,13 +2,16 @@
 
 import { Request, Response } from "express";
 import PartaiServices from "../services/PartaiServices";
+import { PartaiValidator } from "../utils/validator/Partai";
 
 export default new (class PartaiControllers {
-
   async create(req: Request, res: Response): Promise<Response> {
     try {
       const data = req.body;
-      const partai = await PartaiServices.create(data);
+
+      const { error, value } = PartaiValidator.validate(data);
+      if (error) return res.status(400).json(error.details[0].message);
+      const partai = await PartaiServices.create(value);
 
       return res.status(201).json(partai);
     } catch (error) {

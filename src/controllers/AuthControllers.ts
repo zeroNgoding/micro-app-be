@@ -1,14 +1,18 @@
 // Controllers for logical system application
 
 import { Request, Response } from "express";
-import UserServices from "../services/UserServices";
 import AuthServices from "../services/AuthServices";
+import { AuthValidator } from "../utils/validator/Auth";
 
 export default new (class UserControllers {
   async register(req: Request, res: Response): Promise<Response> {
     try {
       const data = req.body;
-      const user = await AuthServices.register(data);
+
+      const { error, value } = AuthValidator.validate(data);
+      if (error) return res.status(400).json(error.details[0].message);
+
+      const user = await AuthServices.register(value);
 
       return res.status(201).json(user);
     } catch (error) {

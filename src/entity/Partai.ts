@@ -15,10 +15,13 @@ export class Partai {
   id: number;
 
   @Column()
-  chairman: string;
+  name: string;
 
   @Column()
-  vm: string;
+  chairman: string;
+
+  @Column({ type: "json" })
+  vm: string[];
 
   @Column()
   address: string;
@@ -26,7 +29,7 @@ export class Partai {
   @Column()
   logo: string;
 
-  @ManyToOne(() => Paslon, paslon => paslon.partai)
+  @ManyToOne(() => Paslon, (paslon) => paslon.partai)
   paslon: Paslon;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })

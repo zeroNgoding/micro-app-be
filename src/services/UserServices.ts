@@ -8,7 +8,6 @@ export default new (class UserServices {
     try {
       const user = AppDataSource.getRepository(User)
         .createQueryBuilder("user")
-        .leftJoinAndSelect("user.articles", "articles")
         .where("user.id = :id", { id: id })
         .getOne();
 
@@ -22,7 +21,6 @@ export default new (class UserServices {
     try {
       const users = await AppDataSource.getRepository(User)
         .createQueryBuilder("user")
-        .leftJoinAndSelect("user.articles", "articles")
         .getMany();
 
       return users;
@@ -35,10 +33,9 @@ export default new (class UserServices {
     try {
       const user = await AppDataSource.getRepository(User)
         .createQueryBuilder()
-        .leftJoinAndSelect("user.articles", "articles")
         .update(User)
         .set(data)
-        .where("user.id = :id", { id: id })
+        .where("id = :id", { id: id })
         .execute();
       return user;
     } catch (error) {
@@ -52,7 +49,7 @@ export default new (class UserServices {
         .createQueryBuilder()
         .delete()
         .from(User)
-        .where("user.id = :id", { id: id })
+        .where("id = :id", { id: id })
         .execute();
 
       return user;
@@ -61,3 +58,7 @@ export default new (class UserServices {
     }
   }
 })();
+
+
+
+
