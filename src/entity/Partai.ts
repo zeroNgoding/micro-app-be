@@ -21,12 +21,12 @@ export class Partai {
   chairman: string;
 
   @Column({ type: "json" })
-  vm: string[];
+  vm: string;
 
   @Column()
   address: string;
 
-  @Column()
+  @Column({ nullable: true })
   logo: string;
 
   @ManyToOne(() => Paslon, (paslon) => paslon.partai)

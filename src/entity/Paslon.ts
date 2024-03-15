@@ -22,7 +22,7 @@ export class Paslon {
   no_urut: string;
 
   @Column({ type: "json" })
-  vm: string[];
+  vm: string;
 
   @Column()
   image: string;

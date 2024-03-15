@@ -5,6 +5,6 @@ export const PartaiValidator = Joi.object({
   chairman: Joi.string().required(),
   vm: Joi.string().required(),
   address: Joi.string().required(),
-  logo: Joi.string().required(),
+  logo: Joi.string(),
   paslon: Joi.number().required(),
 });
